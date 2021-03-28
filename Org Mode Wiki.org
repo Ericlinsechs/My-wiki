@@ -1,0 +1,33 @@
+* OUTLINER
+** item 1
+** item 2
+* Markup
+  *Bold*, /italic/, =verbatim=, +strikethrough+
+  - list
+  - items
+* Link
+** c+c, c+l to create a link : [[https://orgmode.org/][org mode]]  
+* Tables
+  | Some | Data |
+  | ---- |      |
+  | 12   |      |
+* Source code
+#+Begin_example
+  def edit_specail_test()
+      if n == 0
+         1
+      else
+        n * 1
+      end
+  end
+#+end_example
+* Todo stuff
+** TODO try todo lists  
+** TODO cycle through states c+c,c+t
+** TODO sft+M+enter to copy pattern
+** TODO c+c c+d to set a deadline date
+   DEADLINE: <2021-03-28 Su>
+
+  
+  
+
