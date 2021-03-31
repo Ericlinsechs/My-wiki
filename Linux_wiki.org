@@ -1,17 +1,16 @@
-* File system
-
-* Content :TOC_2_gh:noexport:
-- [[#file-system][File system]]
-- [[#file-system-1][File System]]
+* Content                                                 :TOC_2_gh:noexport:
+- [[#file-system][File System]]
   - [[#disk-and-directory-capacity][Disk and Directory capacity]]
   - [[#hard-link-and-symbolick-link][Hard link and Symbolick link]]
-  -   [[#command][Command]]
+  - [[#command][Command]]
 - [[#bash-shell][Bash shell]]
   - [[#command-1][Command]]
   - [[#variable][Variable]]
   - [[#alias][alias]]
   - [[#enter-terminal-user-interface][Enter terminal user interface]]
   - [[#login-or-non-login-shell][Login or Non-login shell]]
+  - [[#file-redirect][File redirect]]
+  - [[#command-executed-logic-char][Command executed logic char]]
 
 * File System
 ** Disk and Directory capacity
@@ -32,7 +31,7 @@ Build a new file(new inode), it would point to orignal file.
 | 53745909 lrwxrwxrwx. 1 root root  12 Jun 23 22:31 /root/crontab2 -> /etc/crontab |
 **** Flaw on SL :
 1. It would be malfuntion if original is deleted.
-**   Command
+** Command
 | Command  | describtion                                          | Ref |
 |----------+------------------------------------------------------+-----|
 | =df=     | report file sys disk space usage                     |     |
@@ -115,8 +114,26 @@ Build a new file(new inode), it would point to orignal file.
 *** Non-login
     Enter an environment without account and password.
     System would only read =~/.bashrc=
-    
-        
+** File redirect
+*** Standard output(STDOUT) & Standard error output(STDERR)
+    Copy normal or error screen message and extract to a file.
+    | pattern    | code | command                            |
+    |------------+------+------------------------------------|
+    | stdin      |    0 | < or <<                            |
+    | stdout     |    1 | > or >>                            |
+    | stderr     |    2 | 2> or 2>>                          |
+    |------------+------+------------------------------------|
+    | overwrite  |      | >                                  |
+    | add        |      | >>                                 |
+    | 1&2        |      | (filename) > (filename) 2>&1 or &> |
+    | black hole |      | /dev/null                          |
+*** Standard input(STDIN)
+    Import one file's content to another file
+    Ex :
+    =cat > catfile < ~/.bashrc=  // Overwrite catfile by .bashrc
+    =<< "char"= // Overwrite until "char"
+** Command executed logic char
+   
 
 
 
