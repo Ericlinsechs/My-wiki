@@ -1,4 +1,11 @@
 * Content                                                 :TOC_2_gh:noexport:
+- [[#basic][Basic]]
+  - [[#command-line][Command line]]
+  - [[#file-type--permission][File type & permission]]
+  - [[#change-permission-of-file][Change permission of file]]
+  - [[#file-content-review][file content review]]
+  - [[#search-file-or-directory][Search file or directory]]
+  - [[#regular-expression][Regular Expression]]
 - [[#file-system][File System]]
   - [[#disk-and-directory-capacity][Disk and Directory capacity]]
   - [[#hard-link-and-symbolick-link][Hard link and Symbolick link]]
@@ -13,6 +20,66 @@
   - [[#command-executed-logic-char][Command executed logic char]]
   - [[#fetch-command][Fetch Command]]
 
+* Basic
+** Command line
+| [root@test root]# | command | [-options]      | parameter1 | parameter2 |
+|-------------------+---------+-----------------+------------+------------|
+| user or root      | cmd     | abb. -> -       |            |            |
+|                   |         | full name -> -- |            |            |
+** File type & permission
+| file type     | owner      | group | other | link(inode) num | owner name | group name | file capacity | last edited time | file name    |
+|---------------+------------+-------+-------+-----------------+------------+------------+---------------+------------------+--------------|
+| [-]           | [rwx]      | [rw-] | [r--] |               1 | root       | root       |          1864 | May 4 18:01      | /etc/crontab |
+| [d] directory | r(read)    |       |       |                 |            |            |               |                  |              |
+| [-] file      | w(write)   |       |       |                 |            |            |               |                  |              |
+| [l] link file | x(execute) |       |       |                 |            |            |               |                  |              |
+** Change permission of file
+| cmd     | describtion                    | ref |
+|---------+--------------------------------+-----|
+| =chgrp= | change belonging group of file |     |
+| =chown= | change belonging user of file  |     |
+| =chmod= | change arttribution of file    |     |
+|         | r=4, w=2, x=1                  |     |
+|         | u=user, g=group, o=other, all  |     |
+| =umask= | setting default permission     |     |
+** file content review
+| cmd    | describtion                                    | ref |
+|--------+------------------------------------------------+-----|
+| =cat=  | print begin from first line                    |     |
+| =tac=  | print begin from last line                     |     |
+| =more= | print page by page                             |     |
+| =less= | same as =more=, except it can see pevious page |     |
+| =head= |                                                |     |
+| =tail= |                                                |     |
+| =nl=   | line number                                    |     |
+| =od=   | read file by binary mode                       |     |
+** Search file or directory
+| cmd       | describtion                                  | ref |
+|-----------+----------------------------------------------+-----|
+| =which=   | find out file route                          |     |
+| =whereis= | print all including file and directory       |     |
+| =locate=  | Quickly file finding, under /var/lib/slocate |     |
+| =find=    |                                              |     |
+** Regular Expression
+List processing tool, like search, overwrite certain list.
+A line as unit.
+*** grep
+-i, see upper case and lower case as the same
+-n, print out line number
+=grep -in 'the' regular_express.txt=
+| cmd          | describtion                             |
+|--------------+-----------------------------------------|
+| ='t[ae]st'=  | [one char], tast or test                |
+| '[^g]oo'     | cant have 'g' before 'oo'               |
+| '[^a-z]oo'   | cant have lower case before 'oo'        |
+| '[0-9]'      | finding number                          |
+| '^the'       | print if 'the' in the beginning of line |
+| '\.$'        | find '.' in the end of line             |
+| special char | . [] {} $ ^                             |
+| *            | represent 0 or a few char               |
+| .            | represent absolutely 1 char             |
+| 'o\{2\}      | find only two 'o'                       |
+
 * File System
 ** Disk and Directory capacity
    1. df : report file sys disk space usage
@@ -22,7 +89,7 @@
 *** Hard link :
 Equal to copy the ordinary file, same inode to original file.
 | 34474855 -rw-r--r--. 2 root root 451 Jun 10  2014 crontab      |
-| 34474855 -rw-r--r--. 2 root root 451 Jun 10  2014 /etc/crontab |                                                                |
+| 34474855 -rw-r--r--. 2 root root 451 Jun 10  2014 /etc/crontab |     
 **** limit on Hard link:
 1. Can't use on diff.
 2. Can't link a directory.
@@ -134,20 +201,20 @@ Build a new file(new inode), it would point to orignal file.
     =cat > catfile < ~/.bashrc=  // Overwrite catfile by .bashrc
     =<< "char"= // Overwrite until "char"
 ** Command executed logic char
-   | Command      | Description                   | Ref |
-   |--------------+-------------------------------+-----|
-   | cmd; cmd     | cmd1; cmd2                    |     |
-   | cmd1 && cmd2 | if cmd1 == true; cmd2 true    |     |
-   |              | if cmd1 == false; cmd2 false  |     |
-   | cmd1 \vert\vert cmd2 | if cmd1 == false; cmd2 true   |     |
-   |              | if cmd1 == true; cmd2 false   |     |
-   | \vert (pipe)     | Ex: ls -al /etc \vert less(cmd)   |     |
+   | Command              | Description                     | Ref |
+   |----------------------+---------------------------------+-----|
+   | cmd; cmd             | cmd1; cmd2                      |     |
+   | cmd1 && cmd2         | if cmd1 == true; cmd2 true      |     |
+   |                      | if cmd1 == false; cmd2 false    |     |
+   | cmd1 \vert\vert cmd2         | if cmd1 == false; cmd2 true     |     |
+   |                      | if cmd1 == true; cmd2 false     |     |
+   | \vert (pipe)         | Ex: ls -al /etc \vert less(cmd) |     |
 ** Fetch Command
    | Command | Description                   | Ref |
    |---------+-------------------------------+-----|
    | =cut=   | slice and extract the section |     |
    | =grep=  | slice the row to analyse      |     |
-   |         |                               |     |
+   
    
 
 
