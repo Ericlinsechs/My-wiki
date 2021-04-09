@@ -1,0 +1,41 @@
+* Machine Learning wiki
+** Pandas
+   The most popular Python library for data analysis.
+   Two core objects: *DataFrame* and the *Series*
+*** DataFrame
+    pd.DataFrame()
+    *A DataFrame is a table.*
+    It contains an array of individual entries, each of which has a certain value.
+    Each entry corresponds to a row (or record) and a column.
+    | Example                                                                                   |
+    |-------------------------------------------------------------------------------------------|
+    | pd.DataFrame({'Apples':[35, 41], 'Bananas':[21, 34]}, index=['2017 Sales', '2018 Sales']) |
+
+
+*** Series
+    pd.Series()
+    *Series is a list.*
+    Series does not have a column name, it only has one *overall name*.
+    | Example                                                                                     |
+    |---------------------------------------------------------------------------------------------|
+    | pd.Series([30, 35, 40], index=['2015 Sales', '2016 Sales', '2017 Sales'], name='Product A') |
+*** Csv file
+    CSV file is a table of values separated by commas. Hence the name: "Comma-Separated Values".
+    | cmd                          | description                                    | Example                       |
+    |------------------------------+------------------------------------------------+-------------------------------|
+    | =pd.read.csv()=              |                                                |                               |
+    | =pd.read.csv(index_col=0)=   | use original index instead of building new one |                               |
+    |------------------------------+------------------------------------------------+-------------------------------|
+    | =df.shape=                   | check size                                     |                               |
+    | =df.head()=                  | grab firt five rows                            |                               |
+    | =df.to_csv()=                | export dataframe to csv file                   |                               |
+    | =df.['title']=               | check the column of 'title'                    |                               |
+    | =df.iloc[rows, column]=      | index-base selection, 0:10 = [0,...,9]         | [[0, 1, 2], 0], [:, 0], [-5:] |
+    | =df.loc[rows, column_label]= | label-base selection, 0:10 = [0,...,10]        |                               |
+    | df.loc[df.label == 'string'] |                                                |                               |
+    | =df.notnull()=               | highlight values which are or not empty(NaN)   | companion: =.isnull()=        |
+    | =df.isin(['string'])=        | select the data whose value is in the list     |                               |
+    | =de.set_index("")=           | manipulate index                               |                               |
+    | =df['label']=                | assigning data                                 | df['label'] = 'string'        |
+    |                              |                                                |                               |
+

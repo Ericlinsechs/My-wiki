@@ -1,0 +1,9 @@
+* Pandas
+** Dataframe
+   | cmd    | description                              | Example                         |
+   |--------+------------------------------------------+---------------------------------|
+   | =iloc= | based indexing for selection by position | data.iloc[:, 2:], [row, column] |
+   | =head= | return the first n rows                  | data.head(n=5)                  |
+* Python
+**   
+
