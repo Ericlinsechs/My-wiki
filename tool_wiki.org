@@ -1,0 +1,107 @@
+
+* Content                                                 :TOC_2_gh:noexport:
+- [[#pandas][Pandas]]
+  - [[#dataframe][DataFrame]]
+  - [[#series][Series]]
+- [[#numpy][Numpy]]
+- [[#python][Python]]
+
+* Pandas
+   The most popular Python library for data analysis.
+   Two core objects: *DataFrame* and the *Series*
+** DataFrame
+    pd.DataFrame()
+    *A DataFrame is a table.*
+    It contains an array of individual entries, each of which has a certain value.
+    Each entry corresponds to a row (or record) and a column.
+    | Example                                                                                   |
+    |-------------------------------------------------------------------------------------------|
+    | pd.DataFrame({'Apples':[35, 41], 'Bananas':[21, 34]}, index=['2017 Sales', '2018 Sales']) |
+*** Csv file
+    CSV file is a table of values separated by commas. Hence the name: "Comma-Separated Values".
+    | cmd                        | description                                    | Example |
+    |----------------------------+------------------------------------------------+---------|
+    | =pd.read.csv()=            |                                                |         |
+    | =pd.read.csv(index_col=0)= | use original index instead of building new one |         |
+    | =df.to_csv()=              | export dataframe to csv file                   |         |
+    |----------------------------+------------------------------------------------+---------|
+*** Data check
+    | cmd                          | description                                                                               | Example                       |
+    |------------------------------+-------------------------------------------------------------------------------------------+-------------------------------|
+    | =df.shape=                   | check size                                                                                |                               |
+    | =df.head()=                  | grab firt five rows                                                                       |                               |
+    | =df.info()=                  | check data in detail                                                                      |                               |
+    | =df.['title']=               | check the column of 'title'                                                               |                               |
+    | =df.iloc[rows, column]=      | index-base selection, 0:10 = [0,...,9]                                                    | [[0, 1, 2], 0], [:, 0], [-5:] |
+    | =df.loc[rows, column_label]= | label-base selection, 0:10 = [0,...,10]                                                   | df.loc[df.label == 'string']  |
+    | =df.isin(['string'])=        | select the data whose value is in the list                                                |                               |
+    | =df.label.describ()=         | both numerical and string data can use                                                    |                               |
+    | =df.dtypes=                  | returns the =dtype= of every column in df                                                 |                               |
+    | =df.describe()=              | Generate descriptive statistics                                                           |                               |
+    |------------------------------+-------------------------------------------------------------------------------------------+-------------------------------|
+    | =df.map()=                   | a single value from Series which being transformed to your version and return             |                               |
+    | =df.apply()=                 | similar to =.map()=, except it is to transformed a dataframe by using called-out function |                               |
+    |                              | Caution: =map()= and =apply()= wound not modify the original data they called on          |                               |
+    |------------------------------+-------------------------------------------------------------------------------------------+-------------------------------|
+*** Data Modify
+    | cmd                     | description                                                                  | Example                                                                                                |
+    |-------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------|
+    | =de.set_index("")=      | manipulate index                                                             |                                                                                                        |
+    | =df['label']=           | assigning data                                                               | df['label'] = 'string'                                                                                 |
+    | =df.rename()=           | rename column or index                                                       | reviews.rename(columns={'points': 'score'}), reviews.rename(index={0: 'firstEntry', 1: 'secondEntry'}) |
+    | =pd.concat([df1, df2])= | conbine two dataframe                                                        | pd.concat([canadian_youtube, british_youtube])                                                         |
+    | =df.join()=             | lets you combine different DataFrame objects which have an *index in common* | left.join(right, lsuffix='_CAN', rsuffix='_UK')                                                        |
+    | =df.pivot()=            | reshape dataframe                                                            | ref:[[https://pandas.pydata.org/docs/user_guide/reshaping.html][df.pivot-userguide]]                                                                                 |
+    | =df.reshape(1, -1)=     | transpose dataframe                                                          |                                                                                                        |
+    | =df.copy()=             | dataframe copy                                                               |                                                                                                        |
+    | =df.drop=               | delete selected data in df                                                   |                                                                                                        |
+    | =df.sort_index()=       | order index                                                                  |                                                                                                        |
+    |                         |                                                                              |                                                                                                        |
+*** Data Analyse
+    | cmd                                | description                                    | Example                               |
+    |------------------------------------+------------------------------------------------+---------------------------------------|
+    | =df.groupby(['label'])=            | select the label index to analyse data         | reviews.groupby('points').price.min() |
+    | =df.groupby.(['label']).agg([])=   | analyse bunch of diff function simultaneously  |                                       |
+    | =df.groupby(['label1', 'label2'])= | muti=index analysis                            |                                       |
+    | =df.reset_index()=                 |                                                |                                       |
+    | =df.sort.values(by'')=             |                                                | =(by'len')=                           |
+    | =df.drop_duplicates()=             | delete duplicates data                         |                                       |
+    | =df.value_counts()=                | counting the number of times each value occurs |                                       |
+    | =df.replace('', '')=               | also can replace things                        |                                       |
+*** NaN
+-Process *not a number*
+    | cmd             | description                                  | Example                         |
+    |-----------------+----------------------------------------------+---------------------------------|
+    | =df.astype()=   | convert a column of one type into another    | astype(float)                   |
+    | =pd.isnull()=   | to select NaN(Not a number) entries          | reviews[reviews.price.isnull()] |
+    | =df.fillna('')= | replace NaN to for ex: Unknown               |                                 |
+    | =df.notnull()=  | highlight values which are or not empty(NaN) | companion: =.isnull()=          |
+    
+** Series
+pd.Series()
+*Series is a list.*
+Series does not have a column name, it only has one *overall name*.
+Pandas Series is a *one-dimensional* labeled array capable of holding data of any type.
+The axis labels are collectively called index.
+s = pd.Series(["A_str_Series"])
+| Example                                                                                     |                               |                                     |
+|---------------------------------------------------------------------------------------------+-------------------------------+-------------------------------------|
+| pd.Series([30, 35, 40], index=['2015 Sales', '2016 Sales', '2017 Sales'], name='Product A') |                               |                                     |
+|---------------------------------------------------------------------------------------------+-------------------------------+-------------------------------------|
+| item                                                                                        | describtion                   | Example                             |
+|---------------------------------------------------------------------------------------------+-------------------------------+-------------------------------------  |
+| =.str=                                                                                      | process string                | Series.str.split("_")               |
+| =.dtypes=                                                                                   | data type                     |                                     |
+| =.astype=                                                                                   | change data type              | df.astype({'col1': 'int32'}).dtypes |
+| =.isin=                                                                                     | whether each element is match | s.isin(['cow', 'lama'])             |
+| =head=                                                                                      | return the first n rows       | data.head(n=5)                      |
+
+
+
+* Numpy
+| item             | describtion           | Example |
+|------------------+-----------------------+---------|
+| ndarray          | type: tuple           |         |
+| =np.concatenate= | conbine several array |         |
+* Python
+=lambda= limited one line function

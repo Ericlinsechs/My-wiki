@@ -1,2 +1,6 @@
+* Emacs wiki
+
 * Link
-  [[http://gitqwerty777.github.io/Emacs-tips/][Emacs hotkeys]]
+[[http://gitqwerty777.github.io/Emacs-tips/][Emacs hotkeys]]
+* Vim manager of file
+update dired cmd: g r

@@ -1,9 +1,55 @@
-* Pandas
-** Dataframe
-   | cmd    | description                              | Example                         |
-   |--------+------------------------------------------+---------------------------------|
-   | =iloc= | based indexing for selection by position | data.iloc[:, 2:], [row, column] |
-   | =head= | return the first n rows                  | data.head(n=5)                  |
-* Python
-**   
+* Machine Learning Wiki
+* Content
 
+
+* Basic Concept
+** Regression
+*The function ouptputs a scalar.*
+** Classification
+*Given options(classes) outputs the correct one.*
+** Structure Learning
+*Create something with structure(image, doc...)*
+*** Function with Unknown Parameters
+*Model: y = b + wx1*   based on domain knowlege
+y: weight, b: bias
+*** Define Loss from Training Data
+*Loss is a function of parameters*
+*Equation: L(b, w)*
+Loss: how good a set of valus is
+- Mean absolute error(MAE): e = |y-ytest|
+- Mean square error (MSE):  e = (y - ytest)square
+- Cross-entropy: Probability distributions
+*** Optimization
+*Find minimium Loss*
+*Equation: w(star), b(star) = ar g minL*
+**** Gradient Descent
+1. (Randomly)Pick an intial value w0
+2. Compute w0 to find its negative or positive
+- n: learning rate(hyperparameters)
+- hyperparameters: Need to be set by your own
+3. Update w iteratively
+- local minima: relative minimum point, not the most minimum.
+- global minima: absolute minimum point, the most.
+**** Linear model
+*Model Bias*
+- linear models are too simple,
+   contains severe limitation which is called Model Bias.
+- batch: divide values to several groups
+- 1 epoch: see all the batches once
+- update: update parameters
+***** Loss
+*Equation*
+- L(theta)
+theta: a lot of parameters
+- The steps as same as gradient descent      
+***** Piecewise Linear Curves
+*Equation*
+- red curve(target) = constant + sum of a set of pieces(blue curve)
+- Concept: approximate continuous curve by a piecewise liner curve.
+- We need sufficient pieces if we want to have good approximate.
+***** Sigmoid Function
+*Create blue curves*
+- diff w: change slopes
+- diff b: shift
+- diff c: change heigh
+***** Rectified Linear Unit(ReLU)
